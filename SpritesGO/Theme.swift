@@ -1,20 +1,22 @@
 import SwiftUI
 
 enum Theme {
-    static let pink = Color(hex: "#FDB4C8")
-    static let sky = Color(hex: "#9AD7FF")
-    static let mint = Color(hex: "#B7E4A8")
-    static let lemon = Color(hex: "#FFF1A8")
-    static let coral = Color(hex: "#FF8A7A")
-    static let ink = Color(hex: "#4E4559")
-    static let cream = Color(hex: "#FFF9F2")
+    static let pink = Color(hex: "#FFD0E1")
+    static let sky = Color(hex: "#CDEBFF")
+    static let mint = Color(hex: "#D4F3DA")
+    static let lemon = Color(hex: "#FFF3B8")
+    static let lavender = Color(hex: "#E4D9FF")
+    static let peach = Color(hex: "#FFDCC8")
+    static let coral = Color(hex: "#F58FA1")
+    static let ink = Color(hex: "#574C68")
+    static let cream = Color(hex: "#FFFBF7")
 
     static let roundedFont = Font.system(.body, design: .rounded)
     static let titleFont = Font.system(size: 46, weight: .black, design: .rounded)
 
     static var background: LinearGradient {
         LinearGradient(
-            colors: [Color(hex: "#FFF4F8"), Color(hex: "#E8FAFF"), Color(hex: "#F6FFE8")],
+            colors: [Color(hex: "#FFF1F7"), Color(hex: "#EEF7FF"), Color(hex: "#F2F0FF"), Color(hex: "#F3FFF4")],
             startPoint: .topLeading,
             endPoint: .bottomTrailing
         )
@@ -41,7 +43,7 @@ struct PastelButtonStyle: ButtonStyle {
             .font(.system(.headline, design: .rounded).weight(.bold))
             .foregroundStyle(Theme.ink)
             .padding(.horizontal, 18)
-            .padding(.vertical, 14)
+            .padding(.vertical, 10)
             .background(
                 RoundedRectangle(cornerRadius: 24, style: .continuous)
                     .fill(color)
@@ -66,4 +68,3 @@ struct CloseButton: View {
         .accessibilityLabel("Close")
     }
 }
-

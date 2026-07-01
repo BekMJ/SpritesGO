@@ -8,7 +8,8 @@ struct SpritesGOApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(store)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(Theme.background.ignoresSafeArea())
         }
     }
 }
-

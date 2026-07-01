@@ -4,61 +4,54 @@ struct HomeView: View {
     @EnvironmentObject private var store: GameStore
 
     var body: some View {
-        VStack(spacing: 18) {
-            Spacer(minLength: 28)
+        GeometryReader { proxy in
+            let compact = proxy.size.height < 850
+            ScrollView {
+                VStack(spacing: compact ? 10 : 16) {
+                    VStack(spacing: 6) {
+                        Text(store.text("app_title"))
+                            .font(.system(size: compact ? 38 : 46, weight: .black, design: .rounded))
+                        Text(store.moneyText)
+                            .font(.system(.headline, design: .rounded).weight(.bold))
+                            .padding(.horizontal, 18)
+                            .padding(.vertical, 7)
+                            .background(Capsule().fill(.white.opacity(0.72)))
+                    }
 
-            VStack(spacing: 8) {
-                Text("Sprites GO")
-                    .font(Theme.titleFont)
-                    .foregroundStyle(Theme.ink)
-                Text("Dollars: \(store.moneyText)")
-                    .font(.system(.title3, design: .rounded).weight(.bold))
-                    .padding(.horizontal, 18)
-                    .padding(.vertical, 8)
-                    .background(Capsule().fill(.white.opacity(0.62)))
-            }
+                    SpriteArtView(
+                        sprite: store.activeSprite,
+                        effects: store.effects(for: store.activeSprite),
+                        size: min(proxy.size.width * 0.5, compact ? 150 : 205)
+                    )
 
-            Spacer()
+                    Button { store.navigate(to: .arCamera) } label: {
+                        Label("\(store.text("play_with").uppercased()) \(store.activeSprite.name.uppercased())", systemImage: "sparkles")
+                            .font(.system(.headline, design: .rounded).weight(.black))
+                            .frame(maxWidth: .infinity, minHeight: compact ? 38 : 48)
+                    }
+                    .buttonStyle(PastelButtonStyle(color: Theme.lemon))
 
-            SpriteArtView(sprite: store.activeSprite, effects: store.effects(for: store.activeSprite), size: 210)
-
-            HStack(spacing: 24) {
-                iconButton("gearshape.fill", label: "Settings") { store.navigate(to: .settings) }
-
-                Button {
-                    store.navigate(to: .arCamera)
-                } label: {
-                    Text("PLAY")
-                        .font(.system(size: 34, weight: .black, design: .rounded))
-                        .frame(width: 160, height: 86)
+                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
+                        menuButton("gearshape.fill", label: store.text("settings"), color: Theme.lavender) { store.navigate(to: .settings) }
+                        menuButton("backpack.fill", label: store.text("backpack"), color: Theme.sky) { store.navigate(to: .backpack) }
+                        menuButton("bag.fill", label: store.text("shop"), color: Theme.pink) { store.navigate(to: .shop) }
+                        menuButton("wand.and.stars", label: store.text("salon"), color: Theme.mint) { store.navigate(to: .salon) }
+                    }
                 }
-                .buttonStyle(PastelButtonStyle(color: Theme.lemon))
-
-                iconButton("backpack.fill", label: "Backpack") { store.navigate(to: .backpack) }
+                .frame(minHeight: proxy.size.height - 12, alignment: .center)
+                .padding(.horizontal, 18)
+                .padding(.vertical, 10)
             }
-
-            Spacer()
-
-            HStack {
-                iconButton("dollarsign.circle.fill", label: "Shop") { store.navigate(to: .shop) }
-                Spacer()
-                iconButton("paintbrush.pointed.fill", label: "Salon") { store.navigate(to: .salon) }
-            }
-            .padding(.horizontal, 30)
-            .padding(.bottom, 28)
+            .scrollIndicators(.hidden)
         }
-        .padding()
     }
 
-    private func iconButton(_ name: String, label: String, action: @escaping () -> Void) -> some View {
+    private func menuButton(_ name: String, label: String, color: Color, action: @escaping () -> Void) -> some View {
         Button(action: action) {
-            Image(systemName: name)
-                .font(.system(size: 28, weight: .bold))
-                .foregroundStyle(Theme.ink)
-                .frame(width: 64, height: 64)
+            Label(label, systemImage: name)
+                .font(.system(.subheadline, design: .rounded).weight(.bold))
+                .frame(maxWidth: .infinity, minHeight: 34)
         }
-        .buttonStyle(PastelButtonStyle(color: Theme.sky.opacity(0.9)))
-        .accessibilityLabel(label)
+        .buttonStyle(PastelButtonStyle(color: color))
     }
 }
-

@@ -10,7 +10,7 @@ struct BackpackView: View {
             header
             ScrollView {
                 VStack(alignment: .leading, spacing: 22) {
-                    section("Sprites") {
+                    section(store.text("sprites")) {
                         LazyVGrid(columns: columns, spacing: 14) {
                             ForEach(store.ownedSprites) { sprite in
                                 Button {
@@ -21,7 +21,7 @@ struct BackpackView: View {
                                         Text(sprite.name)
                                             .font(.system(.subheadline, design: .rounded).weight(.bold))
                                         if sprite.id == store.state.activeSpriteID {
-                                            Text("Active").font(.caption.bold()).foregroundStyle(Theme.coral)
+                                            Text(store.text("active")).font(.caption.bold()).foregroundStyle(Theme.coral)
                                         }
                                     }
                                     .frame(maxWidth: .infinity)
@@ -34,10 +34,10 @@ struct BackpackView: View {
                     }
 
                     ForEach(ItemCategory.allCases) { category in
-                        section(category.rawValue) {
-                            let items = store.state.ownedItems.filter { $0.category == category }
-                            if items.isEmpty {
-                                emptyText("No \(category.rawValue.lowercased()) yet.")
+                        section(categoryName(category)) {
+                                    let items = store.state.ownedItems.filter { $0.category == category }
+                                    if items.isEmpty {
+                                emptyText(store.text("no_items"))
                             } else {
                                 LazyVGrid(columns: columns, spacing: 14) {
                                     ForEach(Array(items.enumerated()), id: \.offset) { _, item in
@@ -49,7 +49,7 @@ struct BackpackView: View {
                                                 Text(item.name)
                                                     .font(.system(.subheadline, design: .rounded).weight(.bold))
                                                     .multilineTextAlignment(.center)
-                                                Text(item.isConsumable ? "Use once" : "Reusable")
+                                                Text(statusText(for: item))
                                                     .font(.caption.bold())
                                                     .foregroundStyle(Theme.coral)
                                             }
@@ -73,7 +73,7 @@ struct BackpackView: View {
         HStack {
             CloseButton { store.goHome() }
             Spacer()
-            Text("Backpack").font(.system(.largeTitle, design: .rounded).weight(.black))
+            Text(store.text("backpack")).font(.system(.largeTitle, design: .rounded).weight(.black))
             Spacer()
             Color.clear.frame(width: 46, height: 46)
         }
@@ -103,22 +103,21 @@ struct BackpackView: View {
     }
 
     private func itemIcon(_ item: InventoryItem) -> some View {
-        Image(systemName: symbol(for: item.effect))
-            .font(.system(size: 34, weight: .bold))
-            .foregroundStyle(Theme.ink)
-            .frame(width: 62, height: 62)
-            .background(Circle().fill(Theme.mint.opacity(0.75)))
+        ItemArtView(effect: item.effect, size: 62)
     }
 
-    private func symbol(for effect: ItemEffect) -> String {
-        switch effect {
-        case .food: return "takeoutbag.and.cup.and.straw.fill"
-        case .darkCloak: return "moon.stars.fill"
-        case .lightDress: return "tshirt.fill"
-        case .crown: return "crown.fill"
-        case .collar: return "sparkles"
-        case .caviar: return "birthday.cake.fill"
+    private func statusText(for item: InventoryItem) -> String {
+        if item.isConsumable && item.category != .food {
+            return store.text("use_once")
+        }
+        return store.isApplied(item) ? store.text("unequip") : store.text("equip")
+    }
+
+    private func categoryName(_ category: ItemCategory) -> String {
+        switch category {
+        case .clothing: return store.text("clothing")
+        case .food: return store.text("food")
+        case .accessory: return store.text("accessories")
         }
     }
 }
-

@@ -25,6 +25,7 @@ struct SpriteDefinition: Identifiable, Codable, Hashable {
     let accentHex: String
     let detailHex: String
     let personality: String
+    var imageName: String? = nil
 }
 
 struct InventoryItem: Identifiable, Codable, Hashable {
@@ -113,4 +114,3 @@ struct SalonEffects: Equatable {
         brushed || dried || shampooed || showered
     }
 }
-

@@ -22,8 +22,15 @@ struct ContentView: View {
                 ARCameraView()
             }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Theme.background.ignoresSafeArea())
         .font(Theme.roundedFont)
         .foregroundStyle(Theme.ink)
+        .onAppear {
+            SpriteAudio.shared.startMusic(volume: store.state.settings.volume)
+        }
+        .onChange(of: store.state.settings.volume) { _, newValue in
+            SpriteAudio.shared.updateMusicVolume(newValue)
+        }
     }
 }
-

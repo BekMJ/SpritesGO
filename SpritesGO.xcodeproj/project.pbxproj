@@ -20,6 +20,10 @@
 		8E00100B0000000000000001 /* ShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E00110B0000000000000001 /* ShopView.swift */; };
 		8E00100C0000000000000001 /* SalonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E00110C0000000000000001 /* SalonView.swift */; };
 		8E00100D0000000000000001 /* ARCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E00110D0000000000000001 /* ARCameraView.swift */; };
+		8E00100E0000000000000001 /* SpriteImages in Resources */ = {isa = PBXBuildFile; fileRef = 8E0011100000000000000001 /* SpriteImages */; };
+		8E00100F0000000000000001 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0011110000000000000001 /* AudioManager.swift */; };
+		8E0010100000000000000001 /* Audio in Resources */ = {isa = PBXBuildFile; fileRef = 8E0011120000000000000001 /* Audio */; };
+		8E0010110000000000000001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E0011130000000000000001 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,10 +42,20 @@
 		8E00110D0000000000000001 /* ARCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARCameraView.swift; sourceTree = "<group>"; };
 		8E00110E0000000000000001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8E00110F0000000000000001 /* SpritesGO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpritesGO.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E0011100000000000000001 /* SpriteImages */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SpriteImages; sourceTree = "<group>"; };
+		8E0011110000000000000001 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
+		8E0011120000000000000001 /* Audio */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Audio; sourceTree = "<group>"; };
+		8E0011130000000000000001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		8E0012010000000000000001 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		8E0012010000000000000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -68,7 +82,11 @@
 				8E0011020000000000000001 /* Models.swift */,
 				8E0011040000000000000001 /* SpriteCatalog.swift */,
 				8E0011050000000000000001 /* Theme.swift */,
+				8E0011110000000000000001 /* AudioManager.swift */,
 				8E0011060000000000000001 /* SpriteArtView.swift */,
+				8E0011130000000000000001 /* Assets.xcassets */,
+				8E0011100000000000000001 /* SpriteImages */,
+				8E0011120000000000000001 /* Audio */,
 				8E00110E0000000000000001 /* Info.plist */,
 			);
 			path = SpritesGO;
@@ -93,8 +111,10 @@
 				8E0012010000000000000001 /* Frameworks */,
 				8E0015020000000000000001 /* Resources */,
 			);
-			buildRules = ();
-			dependencies = ();
+			buildRules = (
+			);
+			dependencies = (
+			);
 			name = SpritesGO;
 			productName = SpritesGO;
 			productReference = 8E00110F0000000000000001 /* SpritesGO.app */;
@@ -109,23 +129,41 @@
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1600;
 				LastUpgradeCheck = 1600;
-				TargetAttributes = { 8E0014010000000000000001 = { CreatedOnToolsVersion = 16.0; }; };
+				TargetAttributes = {
+					8E0014010000000000000001 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+				};
 			};
 			buildConfigurationList = 8E0017010000000000000001 /* Build configuration list for PBXProject "SpritesGO" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
-			knownRegions = (en, Base);
+			knownRegions = (
+				en,
+				Base,
+			);
 			mainGroup = 8E0013010000000000000001;
 			productRefGroup = 8E0013030000000000000001 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
-			targets = (8E0014010000000000000001 /* SpritesGO */);
+			targets = (
+				8E0014010000000000000001 /* SpritesGO */,
+			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		8E0015020000000000000001 /* Resources */ = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		8E0015020000000000000001 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E0010110000000000000001 /* Assets.xcassets in Resources */,
+				8E00100E0000000000000001 /* SpriteImages in Resources */,
+				8E0010100000000000000001 /* Audio in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -146,6 +184,7 @@
 				8E00100B0000000000000001 /* ShopView.swift in Sources */,
 				8E00100C0000000000000001 /* SalonView.swift in Sources */,
 				8E00100D0000000000000001 /* ARCameraView.swift in Sources */,
+				8E00100F0000000000000001 /* AudioManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,7 +202,10 @@
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = ("DEBUG=1", "$(inherited)");
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				ONLY_ACTIVE_ARCH = YES;
@@ -194,7 +236,9 @@
 		8E0019030000000000000001 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K7GWAFBUHV;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = SpritesGO/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -212,7 +256,9 @@
 		8E0019040000000000000001 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K7GWAFBUHV;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = SpritesGO/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -230,8 +276,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8E0017010000000000000001 /* Build configuration list for PBXProject "SpritesGO" */ = {isa = XCConfigurationList; buildConfigurations = (8E0019010000000000000001 /* Debug */, 8E0019020000000000000001 /* Release */); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
-		8E0018010000000000000001 /* Build configuration list for PBXNativeTarget "SpritesGO" */ = {isa = XCConfigurationList; buildConfigurations = (8E0019030000000000000001 /* Debug */, 8E0019040000000000000001 /* Release */); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		8E0017010000000000000001 /* Build configuration list for PBXProject "SpritesGO" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8E0019010000000000000001 /* Debug */,
+				8E0019020000000000000001 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8E0018010000000000000001 /* Build configuration list for PBXNativeTarget "SpritesGO" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8E0019030000000000000001 /* Debug */,
+				8E0019040000000000000001 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 	};
 	rootObject = 8E0016010000000000000001 /* Project object */;
